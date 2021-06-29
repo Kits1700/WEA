@@ -258,7 +258,9 @@ def dashboard():
   bill=float("{:.2f}".format(bill))
   print(bill)
   return render_template('dashboard.html', labels=days, values=week, values1=week1, bill=bill,legend=legend, legend1=legend1, temp=temp, humid=humid, air=air, turb=turb)
-
+  if __name__ == "__main__":
+    #run the app, set debug=True during testing
+    app.run(debug=True)
 #
 # @app.route("/dashboard/API_key=<api_key>/mac=<mac>/field=<int:field>/temp=<temp>&humid=<humid>&air=<air>&turb=<turb>", methods=['GET'])
 # def update(api_key, mac, field, temp, humid, air, turb):
