@@ -162,7 +162,8 @@ def dashboard():
   df1=pd.DataFrame(values)
   df1.columns = df1.iloc[0]
   df1 = df1.iloc[1:]
-  df1['Datetime']=pd.to_datetime(df1['Date'] + ' ' + df1['Time'])
+  #df1['Datetime']=pd.to_datetime(df1['Dateee'] + ' ' + df1['Time'])
+  df1['Datetime']=df1['Dateee']+' ' + df1['Time']
   df1['Datetime']=pd.to_datetime(df1['Datetime'])
   df1['Air Quality'] = df1['Air Quality'].apply(pd.to_numeric, errors='coerce')
   df1['Turbidity'] = df1['Turbidity'].apply(pd.to_numeric, errors='coerce')
@@ -258,9 +259,7 @@ def dashboard():
   bill=float("{:.2f}".format(bill))
   print(bill)
   return render_template('dashboard.html', labels=days, values=week, values1=week1, bill=bill,legend=legend, legend1=legend1, temp=temp, humid=humid, air=air, turb=turb)
-  if __name__ == "__main__":
-    #run the app, set debug=True during testing
-    app.run(debug=True)
+
 #
 # @app.route("/dashboard/API_key=<api_key>/mac=<mac>/field=<int:field>/temp=<temp>&humid=<humid>&air=<air>&turb=<turb>", methods=['GET'])
 # def update(api_key, mac, field, temp, humid, air, turb):
@@ -350,3 +349,5 @@ def dashboard():
 #   return render_template('dashboard.html', labels=days, values=week, bill=bill,legend=legend,temp=temp, humid=humid, air=air, turb=turb)
 #   # return render_template("update.html", data=data)
 # # app.run(host='0.0.0.0', port= 8090)
+if __name__ == '__main__':
+    app.run(debug=True)
